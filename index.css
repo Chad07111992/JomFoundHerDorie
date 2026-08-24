@@ -23,6 +23,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    width: auto;
 }
 
 html {
@@ -244,7 +245,8 @@ section {
 }
 
 .hero-overlay{
-  position:absolute;inset:0;
+  position: absolute;
+  inset: 0;
   background:linear-gradient(180deg, rgba(15,27,51,.55) 0%, rgba(15,27,51,.72) 55%, rgba(15,27,51,.92) 100%);
 }
 

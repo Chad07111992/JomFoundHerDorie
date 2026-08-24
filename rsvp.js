@@ -58,7 +58,7 @@ form.addEventListener('submit', function(e){
   const diet = document.getElementById('diet').value.trim();
   const message = document.getElementById('message').value.trim();
 
-  if(!fullName || !numGuests || !attending || !email){
+  if(!fullName || !numGuests || !attending || !diet){
     showStatus('Please complete all required fields marked with *.', 'err');
     return;
   }
