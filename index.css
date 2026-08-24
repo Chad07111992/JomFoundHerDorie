@@ -129,9 +129,9 @@ section {
    FLOATING CONTROLS (music toggle)
    ========================================================= */
 .floating-controls {
-  position: absolute;
+  position: fixed;
   top: 20px;
-  right: 50px;
+  right: 80px;
   z-index: 999;
   display: flex;
   gap: 10px;
@@ -144,7 +144,7 @@ section {
   border: 1.5px solid var(--gold);
   background: rgba(15,27,51,.72);
   backdrop-filter: blur(6px);
-  color:var(--gold-light);
+  color: var(--gold-light);
   display: flex;
   align-items: center;
   justify-content: center;
