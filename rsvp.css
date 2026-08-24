@@ -300,3 +300,8 @@
     transition:background .2s ease;
   }
   .success-box button:hover{ background:rgba(201,168,102,.15); }
+
+  .back-link{
+  display:inline-block;margin-top:26px;color:var(--gold-bright);text-decoration:none;
+  font-size:.82rem;letter-spacing:.1em;border-bottom:1px solid var(--gold-bright);padding-bottom:2px;
+}
