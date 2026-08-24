@@ -106,10 +106,9 @@ const prenupPhotos = [
   {src:'Gallery/prenup3.jpg', name:'Prenup 3'},
   {src:'Gallery/prenup4.jpg', name:'Prenup 4'},
   {src:'Gallery/prenup5.jpg', name:'Prenup 5'},
-  {src:'Gallery/prenup6.jpg', name:'Prenup 6'},
 ];
 const stage = document.getElementById('prenupStage');
-let order = [0,1,2,3,4,5]; // order[0] = front photo index
+let order = [0,1,2,3,4]; // order[0] = front photo index
 
 function renderPrenup(){
   stage.innerHTML = '';
