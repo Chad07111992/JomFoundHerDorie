@@ -1,0 +1,134 @@
+:root{
+  --navy-deep:#0f1b33; --navy:#1b2a4a; --brown:#8b6f47; --gold:#c9a66b;
+  --gold-light:#e4cfa0; --cream:#f5f0e6; --cream-white:#fffdf8; --radius:20px;
+  --serif:'Cormorant Garamond',serif; --sans:'Montserrat',Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  background:linear-gradient(160deg,var(--navy-deep),var(--navy));
+  font-family:var(--sans); color:var(--cream-white); min-height:100vh;
+  padding:70px 6vw 90px;
+}
+.header{text-align:center;margin-bottom:44px;}
+.eyebrow{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-light);font-weight:600;}
+h1{font-family:var(--serif);font-size:clamp(2.2rem,5vw,3.4rem);margin-top:12px;color:var(--cream-white);}
+.tagline{
+  font-family:var(--serif);font-style:italic;font-size:1.05rem;color:var(--gold-light);
+  opacity:.85;margin-top:10px;letter-spacing:.02em;
+}
+.divider{width:90px;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:18px auto 0;}
+.back-link{
+  display:inline-block;margin-top:26px;color:var(--gold-light);text-decoration:none;
+  font-size:.82rem;letter-spacing:.1em;border-bottom:1px solid var(--gold-light);padding-bottom:2px;
+}
+
+/* ---------- Slideshow ---------- */
+.stage-wrap{
+  max-width:640px;margin:0 auto;position:relative;
+}
+.stage{
+  position:relative;width:100%;aspect-ratio:3/4;border-radius:var(--radius);
+  overflow:hidden;border:1px solid rgba(201,166,107,.35);
+  background:rgba(255,253,248,.04);
+  box-shadow:0 30px 70px rgba(0,0,0,.45);
+}
+/* soft vignette + film-grain feel for the whole stage, like looking into an old frame */
+.stage::after{
+  content:'';position:absolute;inset:0;pointer-events:none;border-radius:var(--radius);
+  box-shadow:inset 0 0 90px rgba(15,27,51,.65);
+  background:radial-gradient(ellipse at center, transparent 55%, rgba(15,27,51,.35) 100%);
+}
+
+.slide{
+  position:absolute;inset:0;opacity:0;visibility:hidden;pointer-events:none;
+}
+.slide img{
+  width:100%;height:100%;object-fit:cover;display:block;filter:sepia(.12) saturate(1.05);
+}
+.slide.active{opacity:1;visibility:visible;pointer-events:auto;z-index:2;}
+
+/* Transition 1: Fade & bloom — candlelight, like the first look */
+.slide[data-transition="fade"]{ transition:opacity 1.3s ease; }
+.slide[data-transition="fade"] img{ transition:transform 6s ease; transform:scale(1.02); }
+.slide[data-transition="fade"].active img{ transform:scale(1.1); }
+
+/* Transition 2: Ken Burns drift — slow reminiscing pan, like walking down the aisle */
+.slide[data-transition="kenburns"]{ transition:opacity 1.1s ease; }
+.slide[data-transition="kenburns"] img{ transition:transform 7s linear; transform:scale(1.08) translate(0,0); }
+.slide[data-transition="kenburns"].active img{ transform:scale(1.18) translate(-2%,-2%); }
+
+/* Transition 3: Curtain wipe — the reception reveal */
+.slide[data-transition="wipe"]{ transition:clip-path 1.15s cubic-bezier(.65,0,.35,1), opacity .1s linear .05s; clip-path:inset(0 100% 0 0); }
+.slide[data-transition="wipe"].active{ clip-path:inset(0 0% 0 0); }
+
+/* Transition 4: Polaroid flip — flipping through a keepsake album */
+.stage-wrap[data-flip="on"] .slide[data-transition="flip"]{
+  transition:transform .9s cubic-bezier(.5,0,.2,1), opacity .3s ease;
+  transform:rotateY(90deg); opacity:0; transform-origin:center;
+}
+.stage-wrap[data-flip="on"] .slide[data-transition="flip"].active{
+  transform:rotateY(0deg); opacity:1;
+}
+
+/* Transition 5: Soft dissolve rise — a toast, a slow-rising memory */
+.slide[data-transition="rise"]{ transition:opacity 1.2s ease, transform 1.2s cubic-bezier(.22,1,.36,1); transform:translateY(22px) scale(1.03); }
+.slide[data-transition="rise"].active{ transform:translateY(0) scale(1); }
+
+.stage{ perspective:1400px; }
+
+.caption-bar{
+  position:absolute;left:0;right:0;bottom:0;padding:22px 24px 18px;z-index:3;
+  background:linear-gradient(0deg, rgba(15,27,51,.88), rgba(15,27,51,0));
+}
+.event-label{
+  font-size:.7rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-light);font-weight:600;
+}
+.event-caption{
+  font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--cream-white);margin-top:4px;
+}
+
+.nav-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);color:var(--cream-white);font-size:2.1rem;
+  cursor:pointer;user-select:none;padding:10px 14px;z-index:4;background:rgba(15,27,51,.35);
+  border-radius:50%;line-height:1;transition:background .2s ease, color .2s ease;
+}
+.nav-arrow:hover{background:var(--gold);color:var(--navy-deep);}
+.nav-arrow.left{left:-6px;} .nav-arrow.right{right:-6px;}
+
+.controls-row{
+  display:flex;align-items:center;justify-content:center;gap:18px;margin-top:24px;
+}
+.dots{display:flex;gap:9px;}
+.dot{
+  width:9px;height:9px;border-radius:50%;background:rgba(228,207,160,.3);cursor:pointer;
+  transition:background .25s ease, transform .25s ease;
+}
+.dot.active{background:var(--gold);transform:scale(1.25);}
+.play-toggle{
+  border:1px solid rgba(201,166,107,.5);background:transparent;color:var(--gold-light);
+  font-family:var(--sans);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  padding:8px 16px;border-radius:999px;cursor:pointer;transition:background .2s ease,color .2s ease;
+}
+.play-toggle:hover{background:var(--gold);color:var(--navy-deep);}
+
+/* Filmstrip thumbnails — like flipping through the keepsake box */
+.filmstrip{
+  display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px;max-width:700px;
+  margin-left:auto;margin-right:auto;
+}
+.filmstrip button{
+  width:64px;height:80px;border-radius:8px;overflow:hidden;border:2px solid transparent;
+  padding:0;cursor:pointer;opacity:.55;transition:opacity .25s ease,border-color .25s ease,transform .25s ease;
+  background:rgba(255,253,248,.05);
+}
+.filmstrip button img{width:100%;height:100%;object-fit:cover;display:block;}
+.filmstrip button.active{opacity:1;border-color:var(--gold);transform:translateY(-3px);}
+.filmstrip button:hover{opacity:.9;}
+
+@media (max-width:520px){
+  .nav-arrow.left{left:2px;} .nav-arrow.right{right:2px;}
+  .stage-wrap{max-width:100%;}
+}
+@media (prefers-reduced-motion: reduce){
+  .slide, .slide img{ transition:opacity .4s linear !important; transform:none !important; clip-path:none !important; }
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Prenup Gallery | Dimple & Jomer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="gallery.css">
+</head>
+<body>
+
+<div class="header">
+  <span class="eyebrow">Dimple &amp; Jomer</span>
+  <h1>Our Prenup Gallery</h1>
+  <p class="tagline">a few quiet moments, kept, to look back on</p>
+  <div class="divider"></div>
+  <a class="back-link" href="index.html">&larr; Back to Invitation</a>
+</div>
+
+<div class="stage-wrap" id="stageWrap" data-flip="off">
+  <div class="stage" id="stage">
+    <!-- slides injected here -->
+    <span class="nav-arrow left" id="prevBtn">&#8249;</span>
+    <span class="nav-arrow right" id="nextBtn">&#8250;</span>
+  </div>
+
+  <div class="controls-row">
+    <span class="nav-arrow" style="position:static;transform:none;font-size:1.4rem;" id="playBtnIcon">&#10073;&#10073;</span>
+    <button class="play-toggle" id="playToggle">Pause</button>
+    <div class="dots" id="dots"></div>
+  </div>
+
+  <div class="filmstrip" id="filmstrip"></div>
+</div>
+</body>
+    <script src="gallery.js"></script>
+</html>
