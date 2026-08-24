@@ -122,7 +122,7 @@ function renderPrenup(){
     wrap.appendChild(img);
 
     // layout: pos 0 = front & centered; others fan out behind, blurred
-    const spread = 60; // px horizontal spread per step back
+    const spread = 40; // px horizontal spread per step back
     const scaleStep = 0.09;
     const blurStep = 2.2;
     const x = pos === 0 ? 0 : (pos % 2 === 1 ? 1 : -1) * (Math.ceil(pos/2)) * spread;
