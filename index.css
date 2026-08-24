@@ -129,7 +129,7 @@ section {
    FLOATING CONTROLS (music toggle)
    ========================================================= */
 .floating-controls {
-  position: fixed;
+  position: absolute;
   top: 20px;
   right: 50px;
   z-index: 999;
